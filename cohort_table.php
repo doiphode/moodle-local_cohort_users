@@ -57,10 +57,12 @@ class report_table extends table_sql {
     }
 
     function col_lastaccess($values){
-        $strlastaccess = format_time(time() - $values->lastaccess);
-        return $strlastaccess;
-    }
-
+		$strlastaccess = format_time(time() - $values->lastaccess);
+		if ($values->lastaccess==0) {
+			$strlastaccess = "Never";
+			}
+		return $strlastaccess;
+	}
 
     function col_awardingbodyid($values){
         global $DB;
